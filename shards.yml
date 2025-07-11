@@ -1,0 +1,30 @@
+name: versioner
+version: 0.0.1
+
+authors:
+  - drhuffman12 <drhuffman12@gmail.com>
+
+crystal: '>= 1.16.2'
+
+license: MIT
+
+description: |
+  Example repo for a Crystal Language project
+
+targets:
+  about:
+    main: src/versioner/about.cr
+
+development_dependencies:
+
+  spectator:
+    gitlab: arctic-fox/spectator
+    branch: master
+    version: ">= 0.9.33"
+
+  # faker:
+  #   github: askn/faker
+
+  # hardware:
+  #   github: crystal-community/hardware
+
