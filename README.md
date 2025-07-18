@@ -10,8 +10,10 @@ shards version
 
 ```output
 # to be automated...
-0.0.2
+0.0.1a
 ```
+
+VERSION: 0.0.1a
 
 [![Crystal CI](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml/badge.svg)](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml)
 
