@@ -1,19 +1,7 @@
 # versioner
+(shard) Version: 0.0.3
 
-The CURRENT 
 
-```sh
-shards version
-```
-
-.. SHOULD MATCH ..
-
-```output
-# to be automated...
-0.0.2
-```
-
-VERSION: 0.0.1a
 
 [![Crystal CI](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml/badge.svg)](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml)
 
