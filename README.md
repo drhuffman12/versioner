@@ -10,7 +10,7 @@ shards version
 
 ```output
 # to be automated...
-0.0.1a
+0.0.2
 ```
 
 VERSION: 0.0.1a
