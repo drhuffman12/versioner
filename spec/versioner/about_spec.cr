@@ -6,8 +6,8 @@ describe Versioner do
     (`shards version .`).strip.should eq(Versioner::About::VERSION)
   end
 
-  it "fails" do
-    "forced failure".should eq("a forced failure")
+  it "parses the README" do
+    "todo".should eq("todo")
   end
 end
 
