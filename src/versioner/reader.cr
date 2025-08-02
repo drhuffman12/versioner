@@ -66,37 +66,35 @@ module Versioner
     def write_readme_version
       puts "-starting-"
       scan_files
-      puts "-The-repo Version, according to README.md is: "
-      puts
-      puts @version_parts
-      puts "-The-shard version, according to shard.yml is: " + (`shards version`.strip)
+      puts "The repo Version, according to README.md is: " + @version_parts
+      puts "The shard version, according to shard.yml is: " + (`shards version`.strip)
 
       they_match = (@version_parts.join('.') == (`shards version`.strip))
       if they_match
-        puts "-They-match-"
+        puts "They match"
       else
-        puts "-They-DO-NOT-match-"
+        puts "They DO NOT match"
       end
     end
 
     def echo_version
       puts "-starting-"
       scan_files
-      puts "-The-repo Version, according to README.md is: " + @version_parts.join('.')
-      puts "-The-shard version, according to shard.yml is: " + (`shards version`.strip)
+      puts "The repo Version, according to README.md is: " + @version_parts.join('.')
+      puts "The shard version, according to shard.yml is: " + (`shards version`.strip)
 
       they_match = (@version_parts.join('.') == (`shards version`.strip))
       if they_match
-        puts "-They-match-"
+        puts "They match "
       else
-        puts "-They-DO-NOT-match-"
+        puts "They DO NOT match"
       end
       puts "-ending-"
     end
 
     def does_it_match
       if ((@version_parts.join('.') == (`shards version`.strip).to_s)).to_s
-        puts "-They-match-"
+        puts "They match "
       end
       (@version_parts.join('.') == (`shards version`.strip))
     end
