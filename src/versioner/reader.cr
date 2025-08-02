@@ -40,8 +40,6 @@ module Versioner
     end
 
     def extract_version_nums(text, i : Int32)
-      @done = (i >= 3)
-
       if text
         regex = /\d/
         sub_match_data = text.match(regex)
@@ -54,7 +52,7 @@ module Versioner
           puts ">>>> version_parts: " + @version_parts.to_s
           puts ">>>> text_after_match: " + text_after_match.to_s
 
-          extract_version_nums(text_after_match, i + 1) unless (text_after_match.empty?) # || @done || (i >= 3))
+          extract_version_nums(text_after_match, i + 1) unless (text_after_match.empty? || i > 4)
         else
           raise "NON MATCH!:"
           puts "WHY!:"
