@@ -4,8 +4,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches:
-      - '**' # This wildcard also matches all branches for pull requests
+    branches: [ "**" ]
 
 jobs:
   build:
