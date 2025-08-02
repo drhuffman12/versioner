@@ -6,6 +6,14 @@ on:
   pull_request:
     branches: [ "master" ]
 
+  workflow_dispatch:
+    # Optional: Define inputs for manual execution
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+
 jobs:
   build:
 
