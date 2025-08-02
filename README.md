@@ -1,8 +1,10 @@
 # versioner
 
-Version: 0.0.3
+Version: 0.0.4
 
 [![Crystal CI](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml/badge.svg)](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml)
+
+`Versioner` is a basic utility to help keep a repo's version in sync and updated across various files
 
 ## Installation
 
