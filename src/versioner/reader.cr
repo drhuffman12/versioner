@@ -21,12 +21,8 @@ module Versioner
       @from_file_name = from_file_name
     end
 
-    def scan_files # (from_file_name : String) # , keyword_target : String = "version:")
+    def scan_files
       File.open(@from_file_name, "r")  do |file|
-        puts
-        puts "FFF"
-        puts file.size
-        puts "--------"
         file.each_line do |line|
           seek_matching_line(line) unless line.nil? || line.size == 0
         end
@@ -44,7 +40,7 @@ module Versioner
     end
 
     def extract_version_nums(text, i : Int32)
-      @done = (i >= 3)
+      @done = (i >= 4)
 
       if text
         regex = /\d/
@@ -59,25 +55,27 @@ module Versioner
           puts ">>>> version_parts: " + @version_parts.to_s
           puts ">>>> text_after_match: " + text_after_match.to_s
 
-          extract_version_nums(text_after_match, i + 1) unless (@done || (i >= 3))
+          extract_version_nums(text_after_match, i + 1) unless (@done || (i >= 4))
+        else
+          raise "NON MATCH!:
         end
       end
     end
 
     def write_readme_version
-      puts ":starting:"
-      scan_files # (from_file_name = "README.md")
+      puts "starting"
+      scan_files
+      puts "The repo Version, as per 'README.md' is: '"
+      puts
       puts "The repo Version, as per 'README.md' is: '" + @version_parts.join(".") + "'"
       puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
 
       puts "They match '" + (@version_parts.join(".") == (`shards version`.strip)).to_s + "'"
-      
-      puts ":ending:"
     end
 
     def echo_version
       puts ":starting:"
-      scan_files # (from_file_name = "README.md")
+      scan_files
       puts "The repo Version, as per 'README.md' is: '" + @version_parts.join(".") + "'"
       puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
 
@@ -109,14 +107,17 @@ module Versioner
     end
 
     def run(from_file_path : String = "README.md") : Array(String)
-      puts ":starting:"
       set_from_file_name(from_file_path)
       scan_files # (from_file_path)
       puts "The repo Version, as per 'README.md' is: '" + @version_parts.join(".") + "'"
       puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
 
-      puts "They match '" + (@version_parts.join(".") == (`shards version`.strip)).to_s + "'"
-      puts ":ending:"
+      they_match = (@version_parts.join(".") == (`shards version`.strip))
+      if they_match
+        puts "They match! Procede... :)"
+      else
+        puts "They DO NOT match!!!!"
+      end
       
       @version_parts
     end

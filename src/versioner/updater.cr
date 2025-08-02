@@ -13,16 +13,10 @@ module Versioner
     end
 
     def run
-      update_reader = Versioner::Reader.new
-      @version_parts = update_reader.run
       update_writer = Versioner::Writer.new
       update_writer.run
       # bump the version:
-      # ... todo ... update_writer.run(version_parts.to_s)
+      # ... todo ... update_writer.run(@version_parts.to_s)
     end
   end
-
-  # p Versioner::About::VERSION
-  # updated = Versioner::Updater.new
-  # updated.run
 end
