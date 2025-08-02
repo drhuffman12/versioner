@@ -1,4 +1,4 @@
-require "../spec_helper"
+require "../../spec/spec_helper"
 require "../../src/versioner/reader"
 require "../../src/versioner/writer"
 require "../../src/versioner/updater"

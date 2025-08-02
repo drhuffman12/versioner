@@ -2,7 +2,7 @@ module Versioner
   class Reader
     @version_parts : Array(String)
 
-    @from_file_name : String = ""
+    @from_file_name : String = "todo"
 
     @matches : Array(Array(String))
     @count : Int32 = 0
@@ -40,11 +40,10 @@ module Versioner
     end
 
     def extract_version_nums(text, i : Int32)
-      @done = (i >= 4)
+      @done = (i >= 3)
 
       if text
         regex = /\d/
-        
         sub_match_data = text.match(regex)
 
         if sub_match_data
@@ -55,41 +54,56 @@ module Versioner
           puts ">>>> version_parts: " + @version_parts.to_s
           puts ">>>> text_after_match: " + text_after_match.to_s
 
-          extract_version_nums(text_after_match, i + 1) unless (@done || (i >= 4))
+          extract_version_nums(text_after_match, i + 1) unless (text_after_match.empty?) # || @done || (i >= 3))
         else
-          raise "NON MATCH!:
+          raise "NON MATCH!:"
+          puts "WHY!:"
+          puts "text:" + text
+          puts "i:" + i.to_s
+          puts "sub_match_data:" + sub_match_data.to_s
         end
       end
     end
 
     def write_readme_version
-      puts "starting"
+      puts "-starting-"
       scan_files
-      puts "The repo Version, as per 'README.md' is: '"
+      puts "-The-repo Version, according to README.md is: "
       puts
-      puts "The repo Version, as per 'README.md' is: '" + @version_parts.join(".") + "'"
-      puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
+      puts @version_parts
+      puts "-The-shard version, according to shard.yml is: " + (`shards version`.strip)
 
-      puts "They match '" + (@version_parts.join(".") == (`shards version`.strip)).to_s + "'"
+      they_match = (@version_parts.join('.') == (`shards version`.strip))
+      if they_match
+        puts "-They-match-"
+      else
+        puts "-They-DO-NOT-match-"
+      end
     end
 
     def echo_version
-      puts ":starting:"
+      puts "-starting-"
       scan_files
-      puts "The repo Version, as per 'README.md' is: '" + @version_parts.join(".") + "'"
-      puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
+      puts "-The-repo Version, according to README.md is: " + @version_parts.join('.')
+      puts "-The-shard version, according to shard.yml is: " + (`shards version`.strip)
 
-      puts "They match '" + (@version_parts.join(".") == (`shards version`.strip)).to_s + "'"
-      
-      puts ":ending:"
+      they_match = (@version_parts.join('.') == (`shards version`.strip))
+      if they_match
+        puts "-They-match-"
+      else
+        puts "-They-DO-NOT-match-"
+      end
+      puts "-ending-"
     end
 
     def does_it_match
-      puts "They match '" + ((@version_parts.join(".") == (`shards version`.strip).to_s)).to_s + "'"
-      (@version_parts.join(".") == (`shards version`.strip))
+      if ((@version_parts.join('.') == (`shards version`.strip).to_s)).to_s
+        puts "-They-match-"
+      end
+      (@version_parts.join('.') == (`shards version`.strip))
     end
 
-    def version_parts_goto(to_version_parts : Array(String) = ["0","0","9"])
+    def version_parts_goto(to_version_parts : Array(String) = "0.0.1".split('.'))
       @version_parts = to_version_parts
     end
 
