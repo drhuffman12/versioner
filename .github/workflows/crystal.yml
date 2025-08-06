@@ -1,30 +1,53 @@
-name: Crystal CI
+name: Lucky CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [main]
   pull_request:
-    branches: [ "master" ]
-
-  workflow_dispatch:
-    # Optional: Define inputs for manual execution
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
+    branches: "*"
 
 jobs:
-  build:
-
+  check_format:
+    strategy:
+      fail-fast: false
     runs-on: ubuntu-latest
-
-    container:
-      image: crystallang/crystal
-
+    continue-on-error: false
     steps:
-    - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: shards install
-    - name: Run tests
-      run: crystal spec
+      - uses: actions/checkout@v4
+      - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+      - name: Install shards
+        run: shards install
+      - name: Format
+      
+        run: crystal tool format --check
+      - name: Lint
+        run: ./bin/ameba
+  specs:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+        shard_file:
+          - shard.yml
+        crystal_version:
+          - 1.15.1
+          - latest
+        experimental:
+          - false
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: ${{matrix.crystal_version}}
+      - name: Install shards
+        run: shards install --skip-postinstall --skip-executables
+        env:
+          SHARDS_OVERRIDE: ${{ matrix.shard_file }}
+      - name: Run tests
+        run: crystal spec
