@@ -1,4 +1,4 @@
-name: Lucky CI
+name: Versioner CI
 
 on:
   push:
