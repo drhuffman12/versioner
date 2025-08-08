@@ -11,14 +11,15 @@ module Versioner
     @to_version : String = "tbd"
     @segment_number_to_adjust : Int32 = 3
 
-    # @matches : Array(Array(String))
-    # @count : Int32 = 0
-    # @done : Bool = false
-
     def initialize
       set_target_match
       set_file_names
-      set_version(Versioner::Reader.new.version_per_shard)
+      # set_version(Versioner::Reader.new.version_per_shard)
+
+      reader = Versioner::Reader.new
+      puts "reader.version_per_shard:"
+      puts reader.version_per_shard
+
       puts "----"
       puts /Version:/.to_s
       puts "----"
