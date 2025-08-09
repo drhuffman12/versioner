@@ -44,10 +44,6 @@ module Versioner
       else
         File.open(@to_file_name, "w") do |to_file|
           File.open(@from_file_name, "r") do |from_file|
-            to_file.print "Hello, "
-            to_file.puts "Crystal!"
-            to_file.puts "Appending more text:..."
-
             from_file.each_line do |from_line|
               if @target_match =~ from_line
               # if /#{from_line}/.match(@target_match)
