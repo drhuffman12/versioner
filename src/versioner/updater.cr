@@ -39,6 +39,7 @@ module Versioner
       # p! parts
 
       update_writer.set_file_names("shard.yml","shard.yml.TOBE")
+      update_writer.set_target_match(/^version:/, "version:")
       update_writer.set_version(parts.join('.'))
 
       update_writer.run

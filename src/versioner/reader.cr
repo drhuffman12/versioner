@@ -29,7 +29,7 @@ module Versioner
       end
     end
 
-    def seek_matching_line(line, regex = /Version:/)
+    def seek_matching_line(line, regex = /^Version:/)
       if match_data = line.match(regex)
         line_after_match = match_data.post_match
         puts "*:) Match found!"
