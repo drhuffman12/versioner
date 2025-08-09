@@ -61,8 +61,8 @@ module Versioner
       Versioner::Updater.new.run(replace_old) #  = true
     end
 
-    def run(replace_old = true)
-      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(replace_old = false)'"
+    def run(replace_old = false)
+      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(replace_old = true)'"
       update_readme(replace_old)
       update_shard(replace_old)
     end
