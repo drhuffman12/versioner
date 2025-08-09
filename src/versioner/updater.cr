@@ -25,7 +25,7 @@ module Versioner
 
       update_writer.run
 
-      if keep_old
+      unless keep_old
         File.rename("README.md", "README.md.OLD")
         File.rename("README.md.TOBE", "README.md")
       end
@@ -48,12 +48,17 @@ module Versioner
       update_writer.set_version(parts.join('.'))
 
       update_writer.run
-      if keep_old
+      unless keep_old
         File.rename("shard.yml", "shard.yml.OLD")
         File.rename("shard.yml.TOBE", "shard.yml")
       end
       # bump the version:
       # ... todo ... update_writer.run(@version_parts.to_s)
+    end
+
+    def auto_bump(keep_old = false)
+      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(keep_old = false)'"
+      Versioner::Updater.new.run(keep_old) #  = true
     end
 
     def run(keep_old = true)
