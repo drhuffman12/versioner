@@ -22,8 +22,43 @@ jobs:
           crystal: latest
       - name: Install shards
         run: shards install
+
+      - name: Run tests
+        run: crystal spec
+        continue-on-error: true
+      # - name: Build
+      #   run: crystal build src/versioner.cr --release
+      #   continue-on-error: true
+      # - name: Run built binary
+      #   run: ./versioner
+      #   continue-on-error: true
+      # - name: Run built binary with args
+      #   run: ./versioner --help
+      #   continue-on-error: true
+      # - name: Run built binary with invalid args
+      #   run: ./versioner --invalid
+      #   continue-on-error: true
+      # - name: Run built binary with version args
+      #   run: ./versioner --version
+      #   continue-on-error: true
+      # - name: Run built binary with init args
+      #   run: ./versioner --init
+      #   continue-on-error: true
+      # - name: Run built binary with bump args
+      #   run: ./versioner --bump patch
+      #   continue-on-error: true
+      # - name: Run built binary with bump args and dry-run
+      #   run: ./versioner --bump minor --dry-run
+      #   continue-on-error: true
+      # - name: Run built binary with set args
+      #   run: ./versioner --set 1.2.3
+      #   continue-on-error: true
+      # - name: Run built binary with set args and dry-run
+      #   run: ./versioner --set 1.2.3 --dry-run
       # - name: Format
-      # 
+      #   run: crystal tool format
+      # - name: Format
+          
       #   run: crystal tool format --check
       # - name: Lint
       #   run: ./bin/ameba
