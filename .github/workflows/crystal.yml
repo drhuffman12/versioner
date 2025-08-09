@@ -15,17 +15,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Crystal
-        uses: crystal-lang/install-crystal@v1
-        with:
-          crystal: latest
-      - name: Install shards
-        run: shards install
+    - uses: actions/checkout@v4
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: 1.11
+    - run: shards install
+    - run: crystal spec
 
-      - name: Run tests
-        run: crystal spec
-        continue-on-error: true
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - name: Set up Crystal
+    #     uses: crystal-lang/install-crystal@v1
+    #     with:
+    #       crystal: latest
+    #   - name: Install shards
+    #     run: shards install
+    #   - name: Run tests
+    #     run: crystal spec
+    #     continue-on-error: true
       # - name: Build
       #   run: crystal build src/versioner.cr --release
       #   continue-on-error: true
