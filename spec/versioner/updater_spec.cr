@@ -43,7 +43,7 @@ describe Versioner do
   end
 
   it "the version is not updated in original files" do
-    # auto_bump, but force to KEEP_OLD = TRUE! (i.e.: here in this spec file)
+    # auto_bump, but force to KEEP_OLD = TRUE! (i.e.: BUT NOT here in this spec file)
     Versioner::Updater.new.run(keep_old = true)
   end
 end
