@@ -56,8 +56,9 @@ module Versioner
       # ... todo ... update_writer.run(@version_parts.to_s)
     end
 
-    def auto_bump
-      Versioner::Updater.new.run(keep_old = false)
+    def auto_bump(keep_old = false)
+      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(keep_old = false)'"
+      Versioner::Updater.new.run(keep_old) #  = true
     end
 
     def run(keep_old = true)
