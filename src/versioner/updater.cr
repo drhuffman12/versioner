@@ -24,6 +24,8 @@ module Versioner
       update_writer.set_version(parts.join('.'))
 
       update_writer.run
+      File.rename("README.md", "README.md.OLD")
+      File.rename("README.md.TOBE", "README.md")
       # bump the version:
       # ... todo ... update_writer.run(@version_parts.to_s)
     end
@@ -43,8 +45,14 @@ module Versioner
       update_writer.set_version(parts.join('.'))
 
       update_writer.run
+      File.rename("shard.yml", "shard.yml.OLD")
+      File.rename("shard.yml.TOBE", "shard.yml")
       # bump the version:
       # ... todo ... update_writer.run(@version_parts.to_s)
+    end
+
+    def now_swap_updated_files
+      # todo...
     end
 
     def run
