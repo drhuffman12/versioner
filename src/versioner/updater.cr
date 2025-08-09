@@ -12,7 +12,7 @@ module Versioner
       @version_parts = @update_reader.run("README.md")
     end
 
-    def update_readme
+    def update_readme(keep_old = true)
       update_writer = Versioner::Writer.new
 
       ver = @update_reader.version_per_shard # .split("\\.")
@@ -24,13 +24,16 @@ module Versioner
       update_writer.set_version(parts.join('.'))
 
       update_writer.run
-      File.rename("README.md", "README.md.OLD")
-      File.rename("README.md.TOBE", "README.md")
+
+      if keep_old
+        File.rename("README.md", "README.md.OLD")
+        File.rename("README.md.TOBE", "README.md")
+      end
       # bump the version:
       # ... todo ... update_writer.run(@version_parts.to_s)
     end
 
-    def update_shard
+    def update_shard(keep_old = true)
       update_writer = Versioner::Writer.new
 
       ver = @update_reader.version_per_shard # .split("\\.")
@@ -45,19 +48,18 @@ module Versioner
       update_writer.set_version(parts.join('.'))
 
       update_writer.run
-      File.rename("shard.yml", "shard.yml.OLD")
-      File.rename("shard.yml.TOBE", "shard.yml")
+      if keep_old
+        File.rename("shard.yml", "shard.yml.OLD")
+        File.rename("shard.yml.TOBE", "shard.yml")
+      end
       # bump the version:
       # ... todo ... update_writer.run(@version_parts.to_s)
     end
 
-    def now_swap_updated_files
-      # todo...
-    end
-
-    def run
-      update_readme
-      update_shard
+    def run(keep_old = true)
+      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(keep_old = false)'"
+      update_readme(keep_old)
+      update_shard(keep_old)
     end
   end
 end

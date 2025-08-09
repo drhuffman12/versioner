@@ -42,11 +42,8 @@ describe Versioner do
     (reader.version_parts_after).should eq(reader.version_per_shard)
   end
 
-  it "the version (writen) matches version (read)" do
-    updated = Versioner::Updater.new
-    updated.run
-    
-    # swap files....
+  it "the version is not updated in original files" do
+    Versioner::Updater.new.run(keep_old = false)
   end
 end
 
