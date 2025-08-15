@@ -41,7 +41,8 @@ module Versioner
 
     def extract_version_nums(text, i : Int32)
       if text
-        regex = /\d*/
+        # regex = /\d*/
+        regex = /\d+/
         sub_match_data = text.match(regex)
 
         if sub_match_data
