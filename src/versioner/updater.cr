@@ -17,7 +17,7 @@ module Versioner
 
       ver = @update_reader.version_per_shard # .split("\\.")
       parts = ver.split('.')
-      parts[2] = (parts[2].to_i+1).to_s
+      parts[2] = (parts[2].to_i + 1).to_s
       # puts "tobe parts:"
       # p! ver
       # p! parts
@@ -38,12 +38,12 @@ module Versioner
 
       ver = @update_reader.version_per_shard # .split("\\.")
       parts = ver.split('.')
-      parts[2] = (parts[2].to_i+1).to_s
+      parts[2] = (parts[2].to_i + 1).to_s
       # puts "tobe parts:"
       # p! ver
       # p! parts
 
-      update_writer.set_file_names("shard.yml","shard.yml.TOBE")
+      update_writer.set_file_names("shard.yml", "shard.yml.TOBE")
       update_writer.set_target_match(/^version:/, "version:")
       update_writer.set_version(parts.join('.'))
 

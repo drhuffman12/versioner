@@ -16,7 +16,7 @@ describe Versioner do
 
   it "resets the version variable" do
     reader = Versioner::Reader.new
-    (reader.version_parts_goto(["1","2","3"])).should eq(["1","2","3"])
+    (reader.version_parts_goto(["1", "2", "3"])).should eq(["1", "2", "3"])
     (reader.version_parts_after).should eq("1.2.3")
   end
 
@@ -47,4 +47,3 @@ describe Versioner do
     Versioner::Updater.new.run(replace_old = false)
   end
 end
-

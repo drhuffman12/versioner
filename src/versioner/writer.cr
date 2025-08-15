@@ -35,7 +35,7 @@ module Versioner
     end
 
     # def set_segment_number_to_adjust(@segment_number_to_adjust = 3)
-      # TODO
+    # TODO
     # end
 
     def write_readme_version # (@to_version = "0.0.1")
@@ -46,7 +46,7 @@ module Versioner
           File.open(@from_file_name, "r") do |from_file|
             from_file.each_line do |from_line|
               if @target_match =~ from_line
-              # if /#{from_line}/.match(@target_match)
+                # if /#{from_line}/.match(@target_match)
                 # to_file.puts(from_line)
                 to_file.print(@target_match_as_string)
                 to_file.print(" ")
