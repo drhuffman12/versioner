@@ -22,7 +22,7 @@ module Versioner
     end
 
     def scan_files
-      File.open(@from_file_name, "r")  do |file|
+      File.open(@from_file_name, "r") do |file|
         file.each_line do |line|
           seek_matching_line(line) unless line.nil? || line.size == 0
         end
@@ -46,7 +46,7 @@ module Versioner
         sub_match_data = text.match(regex)
 
         if sub_match_data
-          @version_parts << sub_match_data[0] # .to_s.to_i # 
+          @version_parts << sub_match_data[0] # .to_s.to_i #
           text_after_match = sub_match_data.post_match
 
           puts i.to_s + " (sub_match_data) >" + sub_match_data.to_s
@@ -129,7 +129,7 @@ module Versioner
       else
         puts "They DO NOT match!!!!"
       end
-      
+
       @version_parts
     end
   end
