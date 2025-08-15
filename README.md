@@ -1,6 +1,6 @@
 # versioner
 
-Version: 0.0.11
+Version: 0.0.12
 
 [![Crystal CI](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml/badge.svg)](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml)
 
@@ -41,9 +41,11 @@ TODO: Write development instructions here
 7. ADD your CHANGES (`git add my-new-files`)
 8. Update and VERSION your changes (`git add README.md; git add shard.yml; git add src/versioner/about.cr`)
 9. TEST your changes!!! (`crystal spec --error-trace`)
-10. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
-11. PUSH to the branch (`git push origin my-new-feature`)
-12. Create a new Pull Request, get it Approved, and Merge it!
+10. AUTOBUMP your version!!! (`crystal src/versioner/auto_bump.cr`)
+11. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
+12. Run the BUILD (`act -j build`)
+13. PUSH to the branch (`git push origin my-new-feature`)
+14. Create a new Pull Request, get it Approved, and Merge it!
 
 ## Contributors
 
