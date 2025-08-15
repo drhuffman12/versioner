@@ -41,7 +41,8 @@ module Versioner
 
     def extract_version_nums(text, i : Int32)
       if text
-        regex = /\d/
+        # regex = /\d*/
+        regex = /\d+/
         sub_match_data = text.match(regex)
 
         if sub_match_data
@@ -119,7 +120,7 @@ module Versioner
     def run(from_file_path : String = "README.md") : Array(String)
       set_from_file_name(from_file_path)
       scan_files # (from_file_path)
-      puts "The repo Version, as per 'README.md' is: '" + @version_parts.join(".") + "'"
+      puts "The repo Version, as per '" + from_file_path + "' is: '" + @version_parts.join(".") + "'"
       puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
 
       they_match = (@version_parts.join(".") == (`shards version`.strip))
