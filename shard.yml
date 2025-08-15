@@ -21,8 +21,8 @@ targets:
 
 dependencies:
 
- ascii_bar_charter:
-   github: drhuffman12/ascii_bar_charter
+ # ascii_bar_charter:
+ #   github: drhuffman12/ascii_bar_charter
     # branch: master
 
  # counter_safe:
@@ -35,8 +35,8 @@ development_dependencies:
     branch: master
     version: ">= 0.9.33"
 
-  faker:
-    github: askn/faker
+  # faker:
+  #   github: askn/faker
 
 # development_dependencies:
 #   webmock:

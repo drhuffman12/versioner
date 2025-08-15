@@ -40,13 +40,14 @@ TODO: Write development instructions here
 6. *** (Please) correctly update the VERSION!!! (Edit/Syncup `src/versioner/about.cr` and `shard.yml` and in the notes above, under "SHOULD MATCH")
 7. ADD your CHANGES (`git add my-new-files`)
 8. TEST your changes!!! (`crystal spec --error-trace`)
-9. AUTOBUMP the version of your changes!!! (`crystal src/versioner/auto_bump.cr`)
-10. Git add your updated your changes (`git add README.md; git add shard.yml`)
+9. Run AUTOFORMATTING (`crystal tool format`)
+10. AUTOBUMP the version of your changes!!! (`crystal src/versioner/auto_bump.cr`)
+11. Git add your updated your changes (`git add README.md; git add shard.yml`)
 * You can check the version updated in the `README.yml` and the `shard.yml` files.
-11. Run the BUILD (`act -j build`)
-12. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
-13. PUSH to the branch (`git push origin my-new-feature`)
-14. Create a new Pull Request, get it Approved, and Merge it!
+12. Run the BUILD (`act -j build`)
+13. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
+14. PUSH to the branch (`git push origin my-new-feature`)
+15. Create a new Pull Request, get it Approved, and Merge it!
 
 ## Contributors
 
