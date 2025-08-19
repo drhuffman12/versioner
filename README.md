@@ -1,6 +1,6 @@
 # versioner
 
-Version: 0.0.14
+Version: 0.0.15
 
 [![Crystal CI](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml/badge.svg)](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml)
 
