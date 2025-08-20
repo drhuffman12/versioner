@@ -6,6 +6,7 @@ require "../../src/versioner/writer"
 module Versioner
   class Updater
     @version_parts : Array(String) = ["todo"]
+    @new_parts : Array(String) = [""]
 
     def initialize
       @update_reader = Versioner::Reader.new
@@ -16,9 +17,9 @@ module Versioner
       update_writer = Versioner::Writer.new
 
       ver = @update_reader.version_per_shard # .split("\\.")
-      parts = ver.split('.')
-      parts[2] = (parts[2].to_i + 1).to_s
-      update_writer.version(parts.join('.'))
+      @new_parts = ver.split('.')
+      @new_parts[2] = (@new_parts[2].to_i + 1).to_s
+      update_writer.version(@new_parts.join('.'))
 
       update_writer.run
 
@@ -30,16 +31,26 @@ module Versioner
       # ... todo ... update_writer.run(@version_parts.to_s)
     end
 
+    def where_going
+      puts "moving FROM version: " + @version_parts.to_s
+      puts "moving TO version: " + @new_parts.to_s
+    end
+
     def update_shard(replace_old = true)
       update_writer = Versioner::Writer.new
 
       ver = @update_reader.version_per_shard # .split("\\.")
-      parts = ver.split('.')
-      parts[2] = (parts[2].to_i + 1).to_s
+      @new_parts = ver.split('.')
+
+      # Update variable for next version:
+      @new_parts[2] = (@new_parts[2].to_i + 1).to_s
+      # puts "Next: " + @new_parts.to_s
+
+      where_going
 
       update_writer.file_names("shard.yml", "shard.yml.TOBE")
       update_writer.target_match(/^version:/, "version:")
-      update_writer.version(parts.join('.'))
+      update_writer.version(@new_parts.join('.'))
 
       update_writer.run
       if replace_old
@@ -51,12 +62,12 @@ module Versioner
     end
 
     def auto_bump(replace_old = true)
-      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(replace_old = false)'"
+      # "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(replace_old = false)'"
       Versioner::Updater.new.run(replace_old) #  = true
     end
 
     def run(replace_old = false)
-      puts "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(replace_old = true)'"
+      # "WARNING: If you want to force updates, use 'Versioner::Updater.new.run(replace_old = true)'"
       update_readme(replace_old)
       update_shard(replace_old)
     end

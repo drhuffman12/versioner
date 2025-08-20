@@ -32,7 +32,7 @@ module Versioner
     def seek_matching_line(line, regex = /^Version:/)
       if match_data = line.match(regex)
         line_after_match = match_data.post_match
-        puts "*:) Match found!"
+        # puts "*:) Match found!"
         if line_after_match
           extract_version_nums(line_after_match, 0)
         end
@@ -49,9 +49,9 @@ module Versioner
           @version_parts << sub_match_data[0] # .to_s.to_i #
           text_after_match = sub_match_data.post_match
 
-          puts i.to_s + " (sub_match_data) >" + sub_match_data.to_s
-          puts ">>>> version_parts: " + @version_parts.to_s
-          puts ">>>> text_after_match: " + text_after_match.to_s
+          # puts i.to_s + " (sub_match_data) >" + sub_match_data.to_s
+          # puts ">>>> version_parts: " + @version_parts.to_s
+          # puts ">>>> text_after_match: " + text_after_match.to_s
 
           extract_version_nums(text_after_match, i + 1) unless text_after_match.empty? || i > 4
         else
@@ -67,8 +67,8 @@ module Versioner
     def write_readme_version
       puts "-starting-"
       scan_files
-      puts "The repo Version, according to README.md is: " + @version_parts
-      puts "The shard version, according to shard.yml is: " + (`shards version`.strip)
+      # puts "The repo Version, according to README.md is: " + @version_parts
+      # puts "The shard version, according to shard.yml is: " + (`shards version`.strip)
 
       they_match = (@version_parts.join('.') == (`shards version`.strip))
       if they_match
@@ -81,8 +81,8 @@ module Versioner
     def echo_version
       puts "-starting-"
       scan_files
-      puts "The repo Version, according to README.md is: " + @version_parts.join('.')
-      puts "The shard version, according to shard.yml is: " + (`shards version`.strip)
+      # puts "The repo Version, according to README.md is: " + @version_parts.join('.')
+      # puts "The shard version, according to shard.yml is: " + (`shards version`.strip)
 
       they_match = (@version_parts.join('.') == (`shards version`.strip))
       if they_match
@@ -120,16 +120,11 @@ module Versioner
     def run(from_file_path : String = "README.md") : Array(String)
       update_from_file_name(from_file_path)
       scan_files # (from_file_path)
-      puts "The repo Version, as per '" + from_file_path + "' is: '" + @version_parts.join(".") + "'"
-      puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
+      # puts "The repo Version, as per '" + from_file_path + "' is: '" + @version_parts.join(".") + "'"
+      # puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
 
       they_match = (@version_parts.join(".") == (`shards version`.strip))
-      if they_match
-        puts "They match! Procede... :)"
-      else
-        puts "They DO NOT match!!!!"
-      end
-
+      
       @version_parts
     end
   end
