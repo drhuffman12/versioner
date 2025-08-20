@@ -1,7 +1,5 @@
 module Versioner
   class Writer
-    # version_parts : Array(String) = ["todo"]
-
     @target_match : Regex = /tbd/
     @target_match_as_string : String = "tbd"
     @from_file_name : String = "tbd"
@@ -12,9 +10,9 @@ module Versioner
     @segment_number_to_adjust : Int32 = 3
 
     def initialize
-      set_target_match
-      set_file_names
-      # set_version(Versioner::Reader.new.version_per_shard)
+      target_match
+      file_names
+      # version(Versioner::Reader.new.version_per_shard)
 
       reader = Versioner::Reader.new
       puts "reader.version_per_shard:"
@@ -25,18 +23,14 @@ module Versioner
       puts "----"
     end
 
-    def set_target_match(@target_match = /Version:/, @target_match_as_string = "Version:") #  = "Version:")
+    def target_match(@target_match = /Version:/, @target_match_as_string = "Version:") #  = "Version:")
     end
 
-    def set_file_names(@from_file_name = "README.md", @to_file_name = "README.md.TOBE")
+    def file_names(@from_file_name = "README.md", @to_file_name = "README.md.TOBE")
     end
 
-    def set_version(@to_version = "0.0.1")
+    def version(@to_version = "0.0.1")
     end
-
-    # def set_segment_number_to_adjust(@segment_number_to_adjust = 3)
-    # TODO
-    # end
 
     def write_readme_version # (@to_version = "0.0.1")
       if @from_file_name == @to_file_name

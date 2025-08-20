@@ -17,7 +17,7 @@ module Versioner
       @version_parts
     end
 
-    def set_from_file_name(from_file_name = "README.md")
+    def update_from_file_name(from_file_name = "README.md")
       @from_file_name = from_file_name
     end
 
@@ -53,13 +53,13 @@ module Versioner
           puts ">>>> version_parts: " + @version_parts.to_s
           puts ">>>> text_after_match: " + text_after_match.to_s
 
-          extract_version_nums(text_after_match, i + 1) unless (text_after_match.empty? || i > 4)
+          extract_version_nums(text_after_match, i + 1) unless text_after_match.empty? || i > 4
         else
-          raise "NON MATCH!:"
-          puts "WHY!:"
+          puts "NON MATCH!:"
           puts "text:" + text
           puts "i:" + i.to_s
           puts "sub_match_data:" + sub_match_data.to_s
+          raise "Oops"
         end
       end
     end
@@ -118,7 +118,7 @@ module Versioner
     end
 
     def run(from_file_path : String = "README.md") : Array(String)
-      set_from_file_name(from_file_path)
+      update_from_file_name(from_file_path)
       scan_files # (from_file_path)
       puts "The repo Version, as per '" + from_file_path + "' is: '" + @version_parts.join(".") + "'"
       puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
