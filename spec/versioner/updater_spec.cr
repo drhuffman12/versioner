@@ -37,13 +37,13 @@ describe Versioner do
     print ">!!> version_to_be: " + version_to_be
 
     writer = Versioner::Writer.new
-    writer.set_version(version_to_be)
+    writer.version(version_to_be)
     writer.run # (version_to_be)
     (reader.version_parts_after).should eq(reader.version_per_shard)
   end
 
   it "the version is not updated in original files" do
     # auto_bump, but force to replace_old = true! (i.e.: BUT NOT here in this spec file)
-    Versioner::Updater.new.run(replace_old = false)
+    Versioner::Updater.new.run(false)
   end
 end
