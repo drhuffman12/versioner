@@ -14,13 +14,13 @@ module Versioner
       file_names
       # version(Versioner::Reader.new.version_per_shard)
 
-      reader = Versioner::Reader.new
-      puts "reader.version_per_shard:"
-      puts reader.version_per_shard
+      # reader = Versioner::Reader.new
+      # puts "reader.version_per_shard:"
+      # puts reader.version_per_shard
 
-      puts "----"
-      puts /Version:/.to_s
-      puts "----"
+      # puts "----"
+      # puts /Version:/.to_s
+      # puts "----"
     end
 
     def target_match(@target_match = /Version:/, @target_match_as_string = "Version:") #  = "Version:")
@@ -40,11 +40,8 @@ module Versioner
           File.open(@from_file_name, "r") do |from_file|
             from_file.each_line do |from_line|
               if @target_match =~ from_line
-                # if /#{from_line}/.match(@target_match)
-                # to_file.puts(from_line)
                 to_file.print(@target_match_as_string)
                 to_file.print(" ")
-                # if at line with match, then append updated version number:
                 to_file.puts(@to_version)
               else
                 to_file.puts(from_line)
@@ -56,9 +53,7 @@ module Versioner
     end
 
     def run
-      puts ":starting:"
       write_readme_version # (to_version)
-      puts ":ending:"
     end
   end
 end
