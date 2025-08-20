@@ -119,12 +119,7 @@ module Versioner
 
     def run(from_file_path : String = "README.md") : Array(String)
       update_from_file_name(from_file_path)
-      scan_files # (from_file_path)
-      # puts "The repo Version, as per '" + from_file_path + "' is: '" + @version_parts.join(".") + "'"
-      # puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
-
-      they_match = (@version_parts.join(".") == (`shards version`.strip))
-
+      scan_files
       @version_parts
     end
   end

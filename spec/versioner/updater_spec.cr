@@ -34,11 +34,11 @@ describe Versioner do
 
     version_to_be = reader.version_per_shard
     # version_to_be = "1.2.4"
-    print ">!!> version_to_be: " + version_to_be
+    # print ">!!> version_to_be: " + version_to_be
 
     writer = Versioner::Writer.new
     writer.version(version_to_be)
-    writer.run # (version_to_be)
+    writer.run
     (reader.version_parts_after).should eq(reader.version_per_shard)
   end
 

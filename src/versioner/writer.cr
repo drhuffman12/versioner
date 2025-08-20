@@ -14,7 +14,7 @@ module Versioner
       file_names
       # version(Versioner::Reader.new.version_per_shard)
 
-      reader = Versioner::Reader.new
+      # reader = Versioner::Reader.new
       # puts "reader.version_per_shard:"
       # puts reader.version_per_shard
 

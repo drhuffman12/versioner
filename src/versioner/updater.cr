@@ -10,13 +10,14 @@ module Versioner
 
     def initialize
       @update_reader = Versioner::Reader.new
-      @version_parts = @update_reader.run("README.md")
+      # @version_parts = @update_reader.run("README.md")
+      @version_parts = @update_reader.version_parts
     end
 
     def update_readme(replace_old = true)
       update_writer = Versioner::Writer.new
 
-      ver = @update_reader.version_per_shard # .split("\\.")
+      ver = @update_reader.version_per_shard
       @new_parts = ver.split('.')
       @new_parts[2] = (@new_parts[2].to_i + 1).to_s
       update_writer.version(@new_parts.join('.'))
@@ -32,8 +33,8 @@ module Versioner
     end
 
     def where_going
-      puts "moving FROM version: " + @version_parts.to_s
-      puts "moving TO version: " + @new_parts.to_s
+      puts "moving FROM version: " + @update_reader.version_per_shard.to_s
+      puts "moving TO version: " + @new_parts.join('.').to_s
     end
 
     def update_shard(replace_old = true)
@@ -46,14 +47,13 @@ module Versioner
       @new_parts[2] = (@new_parts[2].to_i + 1).to_s
       # puts "Next: " + @new_parts.to_s
 
-      where_going
-
       update_writer.file_names("shard.yml", "shard.yml.TOBE")
       update_writer.target_match(/^version:/, "version:")
       update_writer.version(@new_parts.join('.'))
 
       update_writer.run
       if replace_old
+        where_going
         File.rename("shard.yml", "shard.yml.OLD")
         File.rename("shard.yml.TOBE", "shard.yml")
       end
