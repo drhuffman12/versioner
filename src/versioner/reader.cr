@@ -124,7 +124,7 @@ module Versioner
       # puts "The shard version, as per 'shard.yml' is: '" + (`shards version`.strip) + "'"
 
       they_match = (@version_parts.join(".") == (`shards version`.strip))
-      
+
       @version_parts
     end
   end
