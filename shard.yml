@@ -1,6 +1,5 @@
 name: versioner
-version: 0.0.18
-
+version: 0.1.1
 
 authors:
   - drhuffman12 <drhuffman12@gmail.com>
@@ -13,20 +12,8 @@ description: |
   Example repo for a Crystal Language project
 
 targets:
-  # server:
-  #   main: src/server/cli.cr
-
-  about:
-    main: src/ai4cr2/about.cr
-
-dependencies:
-
- # ascii_bar_charter:
- #   github: drhuffman12/ascii_bar_charter
-    # branch: master
-
- # counter_safe:
- #   github: drhuffman12/counter_safe
+  ver_auto_bump:
+    main: src/versioner/ver_auto_bump.cr
 
 development_dependencies:
 
@@ -41,8 +28,3 @@ development_dependencies:
   # faker:
   #   github: askn/faker
 
-# development_dependencies:
-#   webmock:
-#     github: manastech/webmock.cr
-
-# license: MIT
