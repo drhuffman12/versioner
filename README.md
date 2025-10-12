@@ -44,9 +44,9 @@ TODO: Write development instructions here
 10. *** (Please) correctly update the VERSION!!! (Edit/Syncup `README.md` and `shard.yml`)
 11. Git add your updated your changes (`git add README.md; git add shard.yml`)
 * You can check the version updated in the `README.yml` and the `shard.yml` files.
-12. Run the BUILD (`act -j build`)
-13. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
-14. PUSH to the branch (`git push origin my-new-feature`)
+12. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
+13. PUSH to the branch (`git push origin my-new-feature`)
+14. BEFORE you merge the branch, confim locally via: Run the BUILD (`act -j build`)
 15. Create a new Pull Request, get it Approved, and Merge it!
 
 ## Contributors
