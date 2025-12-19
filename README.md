@@ -1,6 +1,6 @@
 # versioner
 
-Version: 0.1.3
+Version: 0.1.4
 
 [![Crystal CI](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml/badge.svg)](https://github.com/drhuffman12/versioner/actions/workflows/crystal.yml)
 
@@ -46,7 +46,7 @@ TODO: Write development instructions here
 * You can check the version updated in the `README.yml` and the `shard.yml` files.
 12. COMMIT your changes to your new branch (`git commit -am 'my-new-feature description'`)
 13. PUSH to the branch (`git push origin my-new-feature`)
-14. BEFORE you merge the branch, confim locally via: Run the BUILD (`act -j build`)
+14. BEFORE you merge the branch, confim locally via: Run the BUILD (`act --dryrun` or `act -j build`)
 15. Create a new Pull Request, get it Approved, and Merge it!
 
 ## Contributors
